@@ -3,13 +3,131 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TattooAI Studio — Каталог ескізів</title>
+    <title>TattooAI Studio — Головна</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>TattooAI Studio — каталог ескізів</h1>
-    <p id="status">Завантаження...</p>
-    <div id="designs" class="grid"></div>
+    <!-- Навігаційна панель -->
+    <header class="header">
+      <div class="logo">TattooAI Studio</div>
+      <nav class="nav">
+        <a href="#catalog" class="nav-link">Каталог</a>
+        <a href="#protected" class="nav-link" id="nav-protected">Додати ескіз (Захищено)</a>
+      </nav>
+      <div class="user-panel">
+        <span id="user-display" class="user-name"></span>
+        <a href="#login" id="btn-login" class="btn btn-secondary">Увійти</a>
+        <a href="#register" id="btn-register" class="btn btn-outline">Реєстрація</a>
+        <button id="btn-logout" class="btn btn-danger hidden">Вийти</button>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- 1. СТОРІНКА КАТАЛОГУ (Доступна всім) -->
+      <section id="page-catalog" class="page">
+        <h1>Каталог татуювань</h1>
+
+        <h2>Ескізи</h2>
+        <p id="status">Завантаження...</p>
+        <div id="designs" class="grid"></div>
+
+        <h2>Наші майстри</h2>
+        <p id="masters-status">Завантаження майстрів...</p>
+        <div id="masters" class="grid"></div>
+      </section>
+
+      <!-- 2. СТОРІНКА ЛОГІНУ -->
+      <section id="page-login" class="page hidden">
+        <div class="auth-card">
+          <h2>Вхід у систему</h2>
+          <p id="login-error" class="error-msg hidden"></p>
+          <form id="form-login">
+            <div class="form-group">
+              <label for="login-username">Юзернейм</label>
+              <input type="text" id="login-username" required />
+            </div>
+            <div class="form-group">
+              <label for="login-password">Пароль</label>
+              <input type="password" id="login-password" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Увійти</button>
+          </form>
+          <p class="auth-switch">Ще не маєте акаунту? <a href="#register">Зареєструватися</a></p>
+        </div>
+      </section>
+
+      <!-- 3. СТОРІНКА РЕЄСТРАЦІЇ -->
+      <section id="page-register" class="page hidden">
+        <div class="auth-card">
+          <h2>Реєстрація</h2>
+          <p id="register-error" class="error-msg hidden"></p>
+          <p id="register-success" class="success-msg hidden"></p>
+          <form id="form-register">
+            <div class="form-group">
+              <label for="reg-username">Username *</label>
+              <input type="text" id="reg-username" required />
+            </div>
+            <div class="form-group">
+              <label for="reg-email">Email *</label>
+              <input type="email" id="reg-email" required />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="reg-firstname">Ім'я</label>
+                <input type="text" id="reg-firstname" />
+              </div>
+              <div class="form-group">
+                <label for="reg-lastname">Прізвище</label>
+                <input type="text" id="reg-lastname" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="reg-password">Пароль *</label>
+              <input type="password" id="reg-password" required />
+            </div>
+            <div class="form-group">
+              <label for="reg-password-confirm">Підтвердження пароля *</label>
+              <input type="password" id="reg-password-confirm" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Зареєструватися</button>
+          </form>
+          <p class="auth-switch">Вже є акаунт? <a href="#login">Увійти</a></p>
+        </div>
+      </section>
+
+      <!-- 4. ЗАХИЩЕНА СТОРІНКА (Лише для авторизованих користувачів) -->
+      <section id="page-protected" class="page hidden">
+        <div class="form-card">
+          <h2>Створити новий ескіз студії</h2>
+          <p class="subtitle">Ця сторінка доступна лише авторизованим користувачам.</p>
+          <p id="create-status" class="error-msg hidden"></p>
+          <form id="form-create-design">
+            <div class="form-group">
+              <label for="design-title">Назва ескіза *</label>
+              <input type="text" id="design-title" required />
+            </div>
+            <div class="form-group">
+              <label for="design-style">Стиль *</label>
+              <input type="text" id="design-style" placeholder="blackwork, realism..." required />
+            </div>
+            <div class="form-group">
+              <label for="design-price">Ціна (грн) *</label>
+              <input type="number" id="design-price" min="1" required />
+            </div>
+            <div class="form-group">
+              <label for="design-image">URL зображення *</label>
+              <input type="url" id="design-image" placeholder="https://..." required />
+            </div>
+            <div class="form-group">
+              <label for="design-master">ID Майстра *</label>
+              <input type="number" id="design-master" min="1" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Зберегти ескіз</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
     <script src="script.js"></script>
   </body>
 </html>
